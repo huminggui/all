@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/><meta name="exporter-version" content="Evernote Mac 9.2.4 (459056)"/><meta name="author" content="364846148@qq.com"/><meta name="created" content="2020-01-03 07:04:38 +0000"/><meta name="source" content="desktop.mac"/><meta name="updated" content="2020-01-11 14:00:16 +0000"/><meta name="content-class" content="yinxiang.markdown"/><title>8-vue-todolist项目的开始</title></head><body><div style="font-size: 14px; margin: 0; padding: 0; width: 100%;"><div style="line-height: 160%; box-sizing: content-box;"><ul style="line-height: 160%; box-sizing: content-box; display: block; list-style-type: disc; padding-left: 30px; margin: 6px 0 10px; color: #333;"><li style="line-height: 160%; box-sizing: content-box; position: relative;"><a style="line-height: 160%; box-sizing: content-box; text-decoration: underline; color: #5286bc;">项目的开始
+</a><ul style="line-height: 160%; box-sizing: content-box; display: block; list-style-type: disc; padding-left: 30px; margin: 6px 0 10px; color: #333; margin-top: 0; margin-bottom: 0;"><li style="line-height: 160%; box-sizing: content-box; position: relative;"><a style="line-height: 160%; box-sizing: content-box; text-decoration: underline; color: #5286bc;">在webapck使用以下几个插件
+</a></li></ul></li><li style="line-height: 160%; box-sizing: content-box; position: relative;"><a style="line-height: 160%; box-sizing: content-box; text-decoration: underline; color: #5286bc;">todolist界面的实现
+</a><ul style="line-height: 160%; box-sizing: content-box; display: block; list-style-type: disc; padding-left: 30px; margin: 6px 0 10px; color: #333; margin-top: 0; margin-bottom: 0;"><li style="line-height: 160%; box-sizing: content-box; position: relative;"><a style="line-height: 160%; box-sizing: content-box; text-decoration: underline; color: #5286bc;">vue中css添加背景图片
+</a></li><li style="line-height: 160%; box-sizing: content-box; position: relative;"><a style="line-height: 160%; box-sizing: content-box; text-decoration: underline; color: #5286bc;">css总html和body的margin和padding都设置为0了，为什么还有上边距
+</a></li><li style="line-height: 160%; box-sizing: content-box; position: relative;"><a style="line-height: 160%; box-sizing: content-box; text-decoration: underline; color: #5286bc;">css中checkbox样式改，需要改默认样式，如下代码
+</a></li><li style="line-height: 160%; box-sizing: content-box; position: relative;"><a style="line-height: 160%; box-sizing: content-box; text-decoration: underline; color: #5286bc;">点击button时，默认边框的样式取消
+</a></li><li style="line-height: 160%; box-sizing: content-box; position: relative;"><a style="line-height: 160%; box-sizing: content-box; text-decoration: underline; color: #5286bc;">checkbox的选中与数据之间的关系
+</a></li></ul></li><li style="line-height: 160%; box-sizing: content-box; position: relative;"><a style="line-height: 160%; box-sizing: content-box; text-decoration: underline; color: #5286bc;">webpack的配置优化
+</a><ul style="line-height: 160%; box-sizing: content-box; display: block; list-style-type: disc; padding-left: 30px; margin: 6px 0 10px; color: #333; margin-top: 0; margin-bottom: 0;"><li style="line-height: 160%; box-sizing: content-box; position: relative;"><a style="line-height: 160%; box-sizing: content-box; text-decoration: underline; color: #5286bc;">css打包出单独的文件
+</a></li></ul></li></ul></div><h1 style="line-height: 160%; box-sizing: content-box; font-weight: 700; font-size: 41px; border-bottom: 3px double #999; color: #000; margin-top: 14px;">项目的开始</h1>
+<h2 style="line-height: 160%; box-sizing: content-box; font-weight: 700; font-size: 34px; border-bottom: 1px solid #dbdbdb; color: #333;">在webapck使用以下几个插件</h2>
+<p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333;">postcss-loader<br/>
+autoprefixer<br/>
+babel-loader<br/>
+babel-core<br/>
+安装之后<br/>
+创建两个文件<br/>
+一个是.babelrc<br/>
+一个是postcss.config.js</p>
+<p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333;"><strong style="line-height: 160%; box-sizing: content-box; font-weight: 700;">==以上两个文件的作用==</strong><br/>
+postcss的文件是用于处理css代码的，遇到需要加前缀的会自动加上前缀。主要用的插件是autoprefixer<br/>
+postcss.config.js代码的实现如下：</p>
+<pre style="line-height: 160%; box-sizing: content-box; border: 0; border-radius: 0; margin: 2px 0 8px; background-color: #f5f7f8;"><code style="display: block; overflow-x: auto; background: #1e1e1e; line-height: 160%; box-sizing: content-box; border: 0; border-radius: 0; letter-spacing: -.3px; padding: 18px; color: #f4f4f4; white-space: pre-wrap;">const autoPrefixer=require("autoprefixer");
+module.exports={
+    plugins:[
+        autoPrefixer()
+    ]
+}
+
+</code></pre>
+<p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333;">.babelrc的文件主要处理vue中render函数以及遇到的jsx的代码。<br/>
+关于.babelrc还需要安装一下几个插件：<br/>
+babel-preset-env<br/>
+bable-plugin-transform-vue-jsx</p>
+<p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333;">.babelrc的实现如下：</p>
+<pre style="line-height: 160%; box-sizing: content-box; border: 0; border-radius: 0; margin: 2px 0 8px; background-color: #f5f7f8;"><code style="display: block; overflow-x: auto; background: #1e1e1e; line-height: 160%; box-sizing: content-box; border: 0; border-radius: 0; letter-spacing: -.3px; padding: 18px; color: #f4f4f4; white-space: pre-wrap;"> {
+   "presets": [
+       "env"
+   ],
+   "plugins":[
+       "transform-vue-jsx"
+   ] 
+}
+</code></pre>
+<p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333;">然后<br/>
+然后再对webpack中的.styl的规则进行更改，同时设置.jsx的规则，如下代码：</p>
+<pre style="line-height: 160%; box-sizing: content-box; border: 0; border-radius: 0; margin: 2px 0 8px; background-color: #f5f7f8;"><code style="display: block; overflow-x: auto; background: #1e1e1e; line-height: 160%; box-sizing: content-box; border: 0; border-radius: 0; letter-spacing: -.3px; padding: 18px; color: #f4f4f4; white-space: pre-wrap;">{test:/\.jsx$/,use:["babel-loader"]}, //这个是添加的
+
+{
+    test:/\.styl$/,
+    use:[
+        "style-loader",
+        "css-loader",
+        {
+            loader:"postcss-loader",
+            options:{
+                sourceMap:true //作用是postcss-loader可以直接对stylus-loader的结果进行操作，会加快编译的速度。
+            }
+        },
+        "stylus-loader"
+    ]
+},
+
+</code></pre>
+<p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333;">可能会提醒我们还需要安装哪些插件，如下的插件是需要进行安装的，如下：<br/>
+babel-helper-vue-jsx-merge-props<br/>
+babel-plugin-syntax-jsx</p>
+<h1 style="line-height: 160%; box-sizing: content-box; font-weight: 700; font-size: 41px; border-bottom: 3px double #999; color: #000;">todolist界面的实现</h1>
+<p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333;"><strong style="line-height: 160%; box-sizing: content-box; font-weight: 700;">==v-for中key的好处==</strong><br/>
+提高效率，如果key相同则数据更新就不会再生成标签，而是根据key进行数据的更新。</p>
+<p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333;"><img src="8-vue-todolist%E9%A1%B9%E7%9B%AE%E7%9A%84%E5%BC%80%E5%A7%8B.resources/FA8D56EC-F571-427F-A763-9C184D6B612D.png" height="165" width="621"/><br/>
+<img src="8-vue-todolist%E9%A1%B9%E7%9B%AE%E7%9A%84%E5%BC%80%E5%A7%8B.resources/AE1FFCF1-BA04-41DD-9F04-168D9D23B4F9.png" height="717" width="1142"/></p>
+<p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333;">颜色：大背景颜色,<br/>
+#5E94A2 主背景色<br/>
+red是主协助色<br/>
+#304DBE 次协助色</p>
+<h2 style="line-height: 160%; box-sizing: content-box; font-weight: 700; font-size: 34px; border-bottom: 1px solid #dbdbdb; color: #333;">vue中css添加背景图片</h2>
+<p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333;">打包后的图片路径很明显是不对的。而且还不打包图片。<br/>
+可以直接添加图片。<br/>
+background:url(../) //这样的操作就很好。</p>
+<h2 style="line-height: 160%; box-sizing: content-box; font-weight: 700; font-size: 34px; border-bottom: 1px solid #dbdbdb; color: #333;">css总html和body的margin和padding都设置为0了，为什么还有上边距</h2>
+<p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333;">解决办法:<br/>
+*{<br/>
+margin:0;<br/>
+padding:0;<br/>
+}</p>
+<p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333;">其实是你里边的元素还有上边距，例如是否有h1等标签，如果有也设置为0，就没有了。</p>
+<h2 style="line-height: 160%; box-sizing: content-box; font-weight: 700; font-size: 34px; border-bottom: 1px solid #dbdbdb; color: #333;">css中checkbox样式改，需要改默认样式，如下代码</h2>
+<pre style="line-height: 160%; box-sizing: content-box; border: 0; border-radius: 0; margin: 2px 0 8px; background-color: #f5f7f8;"><code style="display: block; overflow-x: auto; background: #1e1e1e; line-height: 160%; box-sizing: content-box; border: 0; border-radius: 0; letter-spacing: -.3px; padding: 18px; color: #f4f4f4; white-space: pre-wrap;">    .todo li input[type=checkbox]{
+       
+       
+       display: inline-block;
+       text-align: center;
+       vertical-align: middle; 
+       line-
+       position: relative
+    }
+     .todo li input[type="checkbox"]::before{
+         content: "";
+         position: absolute;
+         top: 0;left: 0;
+         background: #fff;
+         width: 100%;
+         height: 100%;
+         border: 1px solid #d9d9d9
+    }
+    .todo li input[type="checkbox"]:checked::before{
+        content: "\2713";
+        background-color: #fff;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width:100%;
+        border: 1px solid #e50232;
+        color:#e50232;
+        font-size: 20px;
+        font-weight: bold;
+    }
+</code></pre>
+<h2 style="line-height: 160%; box-sizing: content-box; font-weight: 700; font-size: 34px; border-bottom: 1px solid #dbdbdb; color: #333;">点击button时，默认边框的样式取消</h2>
+<p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333;">outline:none;</p>
+<h2 style="line-height: 160%; box-sizing: content-box; font-weight: 700; font-size: 34px; border-bottom: 1px solid #dbdbdb; color: #333;">checkbox的选中与数据之间的关系</h2>
+<p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333;">@input事件可以改变。</p>
+<h1 style="line-height: 160%; box-sizing: content-box; font-weight: 700; font-size: 41px; border-bottom: 3px double #999; color: #000;">webpack的配置优化</h1>
+<h2 style="line-height: 160%; box-sizing: content-box; font-weight: 700; font-size: 34px; border-bottom: 1px solid #dbdbdb; color: #333;">css打包出单独的文件</h2>
+<p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333;">正常webpack打包的时候，css的文件是变成js的，这个时候的js文件是特别大的，浏览器缓存起来会比较困难。</p>
+<p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333;">extract-text-webpack-plugin   单独把css文件提取出来<br/>
+另外是可以对css文件进行压缩的插件。postcss.config.js //这个还不是很会。</p>
+<p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333;">安装这个插件</p>
+<p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333;">extract-text-webpack-plugin  具体可以参考看webpack4.0的文档，其实</p>
+</div><center style="display:none !important;visibility:collapse !important;height:0 !important;white-space:nowrap;width:100%;overflow:hidden">%5BTOC%5D%0A%0A%23%20%E9%A1%B9%E7%9B%AE%E7%9A%84%E5%BC%80%E5%A7%8B%20%23%0A%23%23%20%E5%9C%A8webapck%E4%BD%BF%E7%94%A8%E4%BB%A5%E4%B8%8B%E5%87%A0%E4%B8%AA%E6%8F%92%E4%BB%B6%20%23%23%0Apostcss-loader%0Aautoprefixer%0Ababel-loader%0Ababel-core%0A%E5%AE%89%E8%A3%85%E4%B9%8B%E5%90%8E%0A%E5%88%9B%E5%BB%BA%E4%B8%A4%E4%B8%AA%E6%96%87%E4%BB%B6%0A%E4%B8%80%E4%B8%AA%E6%98%AF.babelrc%0A%E4%B8%80%E4%B8%AA%E6%98%AFpostcss.config.js%0A%0A**%3D%3D%E4%BB%A5%E4%B8%8A%E4%B8%A4%E4%B8%AA%E6%96%87%E4%BB%B6%E7%9A%84%E4%BD%9C%E7%94%A8%3D%3D**%0Apostcss%E7%9A%84%E6%96%87%E4%BB%B6%E6%98%AF%E7%94%A8%E4%BA%8E%E5%A4%84%E7%90%86css%E4%BB%A3%E7%A0%81%E7%9A%84%EF%BC%8C%E9%81%87%E5%88%B0%E9%9C%80%E8%A6%81%E5%8A%A0%E5%89%8D%E7%BC%80%E7%9A%84%E4%BC%9A%E8%87%AA%E5%8A%A8%E5%8A%A0%E4%B8%8A%E5%89%8D%E7%BC%80%E3%80%82%E4%B8%BB%E8%A6%81%E7%94%A8%E7%9A%84%E6%8F%92%E4%BB%B6%E6%98%AFautoprefixer%0Apostcss.config.js%E4%BB%A3%E7%A0%81%E7%9A%84%E5%AE%9E%E7%8E%B0%E5%A6%82%E4%B8%8B%EF%BC%9A%0A%0A%60%60%60%0Aconst%20autoPrefixer%3Drequire(%22autoprefixer%22)%3B%0Amodule.exports%3D%7B%0A%20%20%20%20plugins%3A%5B%0A%20%20%20%20%20%20%20%20autoPrefixer()%0A%20%20%20%20%5D%0A%7D%0A%0A%60%60%60%0A%0A%0A%0A.babelrc%E7%9A%84%E6%96%87%E4%BB%B6%E4%B8%BB%E8%A6%81%E5%A4%84%E7%90%86vue%E4%B8%ADrender%E5%87%BD%E6%95%B0%E4%BB%A5%E5%8F%8A%E9%81%87%E5%88%B0%E7%9A%84jsx%E7%9A%84%E4%BB%A3%E7%A0%81%E3%80%82%0A%E5%85%B3%E4%BA%8E.babelrc%E8%BF%98%E9%9C%80%E8%A6%81%E5%AE%89%E8%A3%85%E4%B8%80%E4%B8%8B%E5%87%A0%E4%B8%AA%E6%8F%92%E4%BB%B6%EF%BC%9A%0Ababel-preset-env%20%0Abable-plugin-transform-vue-jsx%0A%0A.babelrc%E7%9A%84%E5%AE%9E%E7%8E%B0%E5%A6%82%E4%B8%8B%EF%BC%9A%0A%0A%60%60%60%0A%20%7B%0A%20%20%20%22presets%22%3A%20%5B%0A%20%20%20%20%20%20%20%22env%22%0A%20%20%20%5D%2C%0A%20%20%20%22plugins%22%3A%5B%0A%20%20%20%20%20%20%20%22transform-vue-jsx%22%0A%20%20%20%5D%20%0A%7D%0A%60%60%60%0A%0A%0A%E7%84%B6%E5%90%8E%0A%E7%84%B6%E5%90%8E%E5%86%8D%E5%AF%B9webpack%E4%B8%AD%E7%9A%84.styl%E7%9A%84%E8%A7%84%E5%88%99%E8%BF%9B%E8%A1%8C%E6%9B%B4%E6%94%B9%EF%BC%8C%E5%90%8C%E6%97%B6%E8%AE%BE%E7%BD%AE.jsx%E7%9A%84%E8%A7%84%E5%88%99%EF%BC%8C%E5%A6%82%E4%B8%8B%E4%BB%A3%E7%A0%81%EF%BC%9A%0A%60%60%60%0A%7Btest%3A%2F%5C.jsx%24%2F%2Cuse%3A%5B%22babel-loader%22%5D%7D%2C%20%2F%2F%E8%BF%99%E4%B8%AA%E6%98%AF%E6%B7%BB%E5%8A%A0%E7%9A%84%0A%0A%7B%0A%20%20%20%20test%3A%2F%5C.styl%24%2F%2C%0A%20%20%20%20use%3A%5B%0A%20%20%20%20%20%20%20%20%22style-loader%22%2C%0A%20%20%20%20%20%20%20%20%22css-loader%22%2C%0A%20%20%20%20%20%20%20%20%7B%0A%20%20%20%20%20%20%20%20%20%20%20%20loader%3A%22postcss-loader%22%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20options%3A%7B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20sourceMap%3Atrue%20%2F%2F%E4%BD%9C%E7%94%A8%E6%98%AFpostcss-loader%E5%8F%AF%E4%BB%A5%E7%9B%B4%E6%8E%A5%E5%AF%B9stylus-loader%E7%9A%84%E7%BB%93%E6%9E%9C%E8%BF%9B%E8%A1%8C%E6%93%8D%E4%BD%9C%EF%BC%8C%E4%BC%9A%E5%8A%A0%E5%BF%AB%E7%BC%96%E8%AF%91%E7%9A%84%E9%80%9F%E5%BA%A6%E3%80%82%0A%20%20%20%20%20%20%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20%20%20%7D%2C%0A%20%20%20%20%20%20%20%20%22stylus-loader%22%0A%20%20%20%20%5D%0A%7D%2C%0A%0A%60%60%60%0A%0A%E5%8F%AF%E8%83%BD%E4%BC%9A%E6%8F%90%E9%86%92%E6%88%91%E4%BB%AC%E8%BF%98%E9%9C%80%E8%A6%81%E5%AE%89%E8%A3%85%E5%93%AA%E4%BA%9B%E6%8F%92%E4%BB%B6%EF%BC%8C%E5%A6%82%E4%B8%8B%E7%9A%84%E6%8F%92%E4%BB%B6%E6%98%AF%E9%9C%80%E8%A6%81%E8%BF%9B%E8%A1%8C%E5%AE%89%E8%A3%85%E7%9A%84%EF%BC%8C%E5%A6%82%E4%B8%8B%EF%BC%9A%0Ababel-helper-vue-jsx-merge-props%20%0Ababel-plugin-syntax-jsx%0A%0A%0A%23%20todolist%E7%95%8C%E9%9D%A2%E7%9A%84%E5%AE%9E%E7%8E%B0%20%23%0A**%3D%3Dv-for%E4%B8%ADkey%E7%9A%84%E5%A5%BD%E5%A4%84%3D%3D**%0A%E6%8F%90%E9%AB%98%E6%95%88%E7%8E%87%EF%BC%8C%E5%A6%82%E6%9E%9Ckey%E7%9B%B8%E5%90%8C%E5%88%99%E6%95%B0%E6%8D%AE%E6%9B%B4%E6%96%B0%E5%B0%B1%E4%B8%8D%E4%BC%9A%E5%86%8D%E7%94%9F%E6%88%90%E6%A0%87%E7%AD%BE%EF%BC%8C%E8%80%8C%E6%98%AF%E6%A0%B9%E6%8D%AEkey%E8%BF%9B%E8%A1%8C%E6%95%B0%E6%8D%AE%E7%9A%84%E6%9B%B4%E6%96%B0%E3%80%82%0A%0A!%5Bff28a2fca9b142149c5869647730e3b4.png%5D(evernotecid%3A%2F%2F69D1A427-E11D-409B-B98E-AA035F502CE5%2Fappyinxiangcom%2F1524865%2FENResource%2Fp323)%0A!%5B921c1c374b12b470587f679cce489146.png%5D(evernotecid%3A%2F%2F69D1A427-E11D-409B-B98E-AA035F502CE5%2Fappyinxiangcom%2F1524865%2FENResource%2Fp324)%0A%0A%0A%E9%A2%9C%E8%89%B2%EF%BC%9A%E5%A4%A7%E8%83%8C%E6%99%AF%E9%A2%9C%E8%89%B2%2C%0A%235E94A2%20%E4%B8%BB%E8%83%8C%E6%99%AF%E8%89%B2%0Ared%E6%98%AF%E4%B8%BB%E5%8D%8F%E5%8A%A9%E8%89%B2%0A%23304DBE%20%E6%AC%A1%E5%8D%8F%E5%8A%A9%E8%89%B2%0A%0A%0A%23%23%20vue%E4%B8%ADcss%E6%B7%BB%E5%8A%A0%E8%83%8C%E6%99%AF%E5%9B%BE%E7%89%87%20%23%23%0A%0A%E6%89%93%E5%8C%85%E5%90%8E%E7%9A%84%E5%9B%BE%E7%89%87%E8%B7%AF%E5%BE%84%E5%BE%88%E6%98%8E%E6%98%BE%E6%98%AF%E4%B8%8D%E5%AF%B9%E7%9A%84%E3%80%82%E8%80%8C%E4%B8%94%E8%BF%98%E4%B8%8D%E6%89%93%E5%8C%85%E5%9B%BE%E7%89%87%E3%80%82%0A%E5%8F%AF%E4%BB%A5%E7%9B%B4%E6%8E%A5%E6%B7%BB%E5%8A%A0%E5%9B%BE%E7%89%87%E3%80%82%0Abackground%3Aurl(..%2F)%20%2F%2F%E8%BF%99%E6%A0%B7%E7%9A%84%E6%93%8D%E4%BD%9C%E5%B0%B1%E5%BE%88%E5%A5%BD%E3%80%82%0A%0A%23%23%20css%E6%80%BBhtml%E5%92%8Cbody%E7%9A%84margin%E5%92%8Cpadding%E9%83%BD%E8%AE%BE%E7%BD%AE%E4%B8%BA0%E4%BA%86%EF%BC%8C%E4%B8%BA%E4%BB%80%E4%B9%88%E8%BF%98%E6%9C%89%E4%B8%8A%E8%BE%B9%E8%B7%9D%20%23%23%0A%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95%3A%0A*%7B%0A%20%20%20%20margin%3A0%3B%0A%20%20%20%20padding%3A0%3B%0A%7D%0A%0A%E5%85%B6%E5%AE%9E%E6%98%AF%E4%BD%A0%E9%87%8C%E8%BE%B9%E7%9A%84%E5%85%83%E7%B4%A0%E8%BF%98%E6%9C%89%E4%B8%8A%E8%BE%B9%E8%B7%9D%EF%BC%8C%E4%BE%8B%E5%A6%82%E6%98%AF%E5%90%A6%E6%9C%89h1%E7%AD%89%E6%A0%87%E7%AD%BE%EF%BC%8C%E5%A6%82%E6%9E%9C%E6%9C%89%E4%B9%9F%E8%AE%BE%E7%BD%AE%E4%B8%BA0%EF%BC%8C%E5%B0%B1%E6%B2%A1%E6%9C%89%E4%BA%86%E3%80%82%0A%0A%0A%23%23%20css%E4%B8%ADcheckbox%E6%A0%B7%E5%BC%8F%E6%94%B9%EF%BC%8C%E9%9C%80%E8%A6%81%E6%94%B9%E9%BB%98%E8%AE%A4%E6%A0%B7%E5%BC%8F%EF%BC%8C%E5%A6%82%E4%B8%8B%E4%BB%A3%E7%A0%81%20%23%23%0A%60%60%60%0A%20%20%20%20.todo%20li%20input%5Btype%3Dcheckbox%5D%7B%0A%20%20%20%20%20%20%20width%3A20px%3B%0A%20%20%20%20%20%20%20height%3A20px%3B%0A%20%20%20%20%20%20%20display%3A%20inline-block%3B%0A%20%20%20%20%20%20%20text-align%3A%20center%3B%0A%20%20%20%20%20%20%20vertical-align%3A%20middle%3B%20%0A%20%20%20%20%20%20%20line-height%3A%2018px%3B%0A%20%20%20%20%20%20%20position%3A%20relative%0A%20%20%20%20%7D%0A%20%20%20%20%20.todo%20li%20input%5Btype%3D%22checkbox%22%5D%3A%3Abefore%7B%0A%20%20%20%20%20%20%20%20%20content%3A%20%22%22%3B%0A%20%20%20%20%20%20%20%20%20position%3A%20absolute%3B%0A%20%20%20%20%20%20%20%20%20top%3A%200%3Bleft%3A%200%3B%0A%20%20%20%20%20%20%20%20%20background%3A%20%23fff%3B%0A%20%20%20%20%20%20%20%20%20width%3A%20100%25%3B%0A%20%20%20%20%20%20%20%20%20height%3A%20100%25%3B%0A%20%20%20%20%20%20%20%20%20border%3A%201px%20solid%20%23d9d9d9%0A%20%20%20%20%7D%0A%20%20%20%20.todo%20li%20input%5Btype%3D%22checkbox%22%5D%3Achecked%3A%3Abefore%7B%0A%20%20%20%20%20%20%20%20content%3A%20%22%5C2713%22%3B%0A%20%20%20%20%20%20%20%20background-color%3A%20%23fff%3B%0A%20%20%20%20%20%20%20%20position%3A%20absolute%3B%0A%20%20%20%20%20%20%20%20top%3A%200%3B%0A%20%20%20%20%20%20%20%20left%3A%200%3B%0A%20%20%20%20%20%20%20%20width%3A100%25%3B%0A%20%20%20%20%20%20%20%20border%3A%201px%20solid%20%23e50232%3B%0A%20%20%20%20%20%20%20%20color%3A%23e50232%3B%0A%20%20%20%20%20%20%20%20font-size%3A%2020px%3B%0A%20%20%20%20%20%20%20%20font-weight%3A%20bold%3B%0A%20%20%20%20%7D%0A%60%60%60%0A%0A%23%23%20%E7%82%B9%E5%87%BBbutton%E6%97%B6%EF%BC%8C%E9%BB%98%E8%AE%A4%E8%BE%B9%E6%A1%86%E7%9A%84%E6%A0%B7%E5%BC%8F%E5%8F%96%E6%B6%88%20%23%23%0Aoutline%3Anone%3B%0A%0A%0A%23%23%20checkbox%E7%9A%84%E9%80%89%E4%B8%AD%E4%B8%8E%E6%95%B0%E6%8D%AE%E4%B9%8B%E9%97%B4%E7%9A%84%E5%85%B3%E7%B3%BB%20%23%23%0A%0A%40input%E4%BA%8B%E4%BB%B6%E5%8F%AF%E4%BB%A5%E6%94%B9%E5%8F%98%E3%80%82%0A%0A%0A%23%20webpack%E7%9A%84%E9%85%8D%E7%BD%AE%E4%BC%98%E5%8C%96%20%23%0A%23%23%20css%E6%89%93%E5%8C%85%E5%87%BA%E5%8D%95%E7%8B%AC%E7%9A%84%E6%96%87%E4%BB%B6%20%23%23%0A%E6%AD%A3%E5%B8%B8webpack%E6%89%93%E5%8C%85%E7%9A%84%E6%97%B6%E5%80%99%EF%BC%8Ccss%E7%9A%84%E6%96%87%E4%BB%B6%E6%98%AF%E5%8F%98%E6%88%90js%E7%9A%84%EF%BC%8C%E8%BF%99%E4%B8%AA%E6%97%B6%E5%80%99%E7%9A%84js%E6%96%87%E4%BB%B6%E6%98%AF%E7%89%B9%E5%88%AB%E5%A4%A7%E7%9A%84%EF%BC%8C%E6%B5%8F%E8%A7%88%E5%99%A8%E7%BC%93%E5%AD%98%E8%B5%B7%E6%9D%A5%E4%BC%9A%E6%AF%94%E8%BE%83%E5%9B%B0%E9%9A%BE%E3%80%82%0A%0Aextract-text-webpack-plugin%20%20%20%E5%8D%95%E7%8B%AC%E6%8A%8Acss%E6%96%87%E4%BB%B6%E6%8F%90%E5%8F%96%E5%87%BA%E6%9D%A5%0A%E5%8F%A6%E5%A4%96%E6%98%AF%E5%8F%AF%E4%BB%A5%E5%AF%B9css%E6%96%87%E4%BB%B6%E8%BF%9B%E8%A1%8C%E5%8E%8B%E7%BC%A9%E7%9A%84%E6%8F%92%E4%BB%B6%E3%80%82postcss.config.js%20%2F%2F%E8%BF%99%E4%B8%AA%E8%BF%98%E4%B8%8D%E6%98%AF%E5%BE%88%E4%BC%9A%E3%80%82%0A%0A%E5%AE%89%E8%A3%85%E8%BF%99%E4%B8%AA%E6%8F%92%E4%BB%B6%0A%0Aextract-text-webpack-plugin%20%20%E5%85%B7%E4%BD%93%E5%8F%AF%E4%BB%A5%E5%8F%82%E8%80%83%E7%9C%8Bwebpack4.0%E7%9A%84%E6%96%87%E6%A1%A3%0A</center></body></html>
